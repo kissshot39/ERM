@@ -3,10 +3,7 @@ package project.erm.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import project.erm.dto.member.request.CreateMemberRequest;
 import project.erm.dto.member.response.MemberDetailResponse;
 import project.erm.service.MemberService;
@@ -24,8 +21,13 @@ public class MemberController {
         memberService.createMember(request);
     }
 
+    @GetMapping("member")
+    public MemberDetailResponse attendanceMember(@RequestParam Long id) {
+        return memberService.findMember(id);
+    }
+
     @GetMapping("members")
     public List<MemberDetailResponse> getAllMembers() {
-        return memberService.findAllTeams();
+        return memberService.findAllMember();
     }
 }

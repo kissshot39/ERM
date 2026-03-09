@@ -34,7 +34,15 @@ public class MemberService {
         team.increaseMemberCount();
     }
 
-    public List<MemberDetailResponse> findAllTeams() {
+    public MemberDetailResponse findMember(Long id) {
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("findMember Error %d", id)));
+
+        MemberDetailResponse response = MemberMapper.toMemberDetailResponse(member);
+        return response;
+    }
+
+    public List<MemberDetailResponse> findAllMember() {
         List<Member> members = memberRepository.findAll();
 
         List<MemberDetailResponse> responses =
