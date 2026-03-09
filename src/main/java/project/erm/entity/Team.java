@@ -16,7 +16,7 @@ public class Team {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String teamName;
+    private String name;
 
     @Column(nullable = true)
     private String managerName;
@@ -25,12 +25,26 @@ public class Team {
 
     @Builder
     public Team(
-            String teamName,
-            String managerName,
-            Long memberCount) {
-        this.teamName = teamName;
+            String name,
+            String managerName) {
+        this.name = name;
         this.managerName = managerName;
-        this.memberCount = memberCount;
+        this.memberCount = 0L;
+    }
+
+    public void increaseMemberCount() {
+        this.memberCount++;
+    }
+
+    public void decreaseMemberCount() {
+        if (this.memberCount <= 0) {
+            throw new IllegalArgumentException(String.format("memberCount : %d", memberCount));
+        }
+        memberCount--;
+    }
+
+    public void changeManagerName(String managerName) {
+        this.managerName = managerName;
     }
 
 }

@@ -5,7 +5,7 @@ import project.erm.domain.Role;
 
 import java.time.LocalDate;
 
-public record MemberResponse(
+public record MemberDetailResponse(
         String name,
         String teamName,
         Role role,

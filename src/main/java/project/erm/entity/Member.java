@@ -50,4 +50,8 @@ public class Member {
         this.workStartDate = workStartDate;
     }
 
+    public void changeRole(Role role) {
+        this.role = role;
+    }
+
 }
